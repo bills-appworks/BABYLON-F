@@ -1,0 +1,494 @@
+/*
+ * BABYLON "F" generator
+ * Copyright (c) 2019 bills-appworks
+ * This software is released under the MIT License.
+ * http://opensource.org/licenses/mit-license.php
+ */
+
+html, body {
+  margin: 0;
+}
+
+body {
+  width: 100%;
+  font-family: serif;
+  color: #FFFFFF;
+  background-color: #000000;
+}
+
+body > * {
+  margin: 0.5em;
+}
+
+.hideByLanguage {
+  display: none !important;
+}
+
+input, textarea, select {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px dashed rgba(255, 255, 255, 0.7);
+}
+
+option {
+  /* reset "select" color definition for option background color can't apply */
+  /* workaround: IE not support initial value */
+  background-color: Menu;
+  color: MenuText;
+  background-color: initial;
+  color: initial;
+}
+
+button {
+  height: 2.2em;
+  padding: .3em .8em;
+  border: 1px solid rgba(0, 32, 0, 0.2);
+  background: #444444 linear-gradient(hsla(0, 0%, 100%, 0.2), transparent);
+  border-radius: 0.2em;
+  box-shadow: 0 0.05em 0.25em rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.7);
+  text-shadow: 0 -0.05em 0.05em rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+a {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+main, footer {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.dashedSeparator {
+  border: none;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.7) 50%, rgba(255, 255, 255, 0) 0%);
+  background-position: top;
+  background-size: 16px 1px;
+  background-repeat: repeat-x;
+}
+
+.solidSeparator {
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.description {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/*
+ * header area
+ */
+
+header {
+  margin: 0 auto 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+@media (max-width: 600px) {
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.header-left, .header-right {
+  width: 15%;
+}
+
+.header-right {
+  padding: 0.5em 0.5em 0 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+@media (max-width: 600px) {
+  .header-right {
+    padding: 0.5em 0 0 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+.header-center {
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.title-whole {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+@media (max-width: 480px) {
+  .title-whole {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title > div {
+  text-align: center;
+}
+
+.title > div:first-child {
+  display: flex;
+  flex-direction: row;
+  font-family: 'Noto Serif JP', serif;
+  font-size: xx-large;
+  font-weight: bold;
+  font-stretch: ultra-expanded;
+  position: relative;
+}
+
+.title > div:first-child > div {
+  transform: scaleX(1.3);
+}
+
+.title > div:first-child > div:first-child {
+  padding: 0 0.2em 0 0.2em;
+}
+
+.title > div:first-child > div:last-child {
+  padding: 0 0.2em 0 0.1em;
+}
+
+.title > div:last-child {
+  letter-spacing: 0.5em;
+  text-indent: 1em;
+  font-size: x-small;
+  font-family: 'Prata', serif;
+}
+
+.title > div:last-child > span {
+  margin: 0 0.2em 0 0.2em;
+}
+
+.title-description {
+  margin-left: 2em;
+}
+
+@media (max-width: 480px) {
+  .title-description {
+    margin-left: 0;
+  }
+}
+
+/*
+ * main area
+ */
+
+.paneLayout {
+  width: 100%;
+}
+
+.paneLayoutWide {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.paneLayoutNarrow {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}  
+
+.pane {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0.5em;
+}
+
+#paper {
+  position: relative;
+  height: 400px;
+  width: 297px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0 0   1px rgba(255, 255, 255, 0.7),
+              0 0 0   3px #444444,
+              0 0 0   4px rgba(255, 255, 255, 0.7);
+}
+
+#paper > div {
+  position: absolute;
+}
+
+#measure {
+  visibility: hidden;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.renderChar {
+  z-index: 100;
+}
+
+.renderStain {
+  z-index: 200;
+}
+
+#toImage {
+  position: relative;
+  display: block;
+  width: 8em;
+  margin: 0.5em auto 0.5em auto;
+}
+
+.properties {
+  display: inline-block;
+  margin: 0.5em 0 0.5em 0;
+  box-shadow: 0 0 0   1px rgba(255, 255, 255, 0.7),
+              0 0 0   3px #444444,
+              0 0 0   4px rgba(255, 255, 255, 0.7);
+}
+
+.properties:first-child {
+  margin-top: 0;
+}
+
+.properties:last-child {
+  margin-bottom: 0;
+}
+
+.category {
+  text-align: center;
+  background-color: #444444;
+}
+
+.propertyItem {
+  display: flex;
+  flex-direction: row;
+}
+
+.propertyItem > * {
+  margin: 0.2em;
+}
+
+.propertyItem > select {
+  box-sizing: border-box;
+  /* 
+   * input[type="range"].width
+   * + margin(composite) * 2 (not overlay)
+   * + input[type="number"]).width
+   * (elements are "bor-sizing: border-box;")
+   */
+  width: calc(8em + 0.2em * 2 + 7em);
+}
+
+.propertyLabel {
+  box-sizing: border-box;
+}
+
+.propertyLabel > *:lang(ja) {
+  width: 4em;
+}
+
+.propertyLabel > *:lang(en) {
+  width: 4em;
+}
+
+.propertyItem > input[type="range"] {
+  box-sizing: border-box;
+  width: 8em;
+}
+
+.propertyItem > input[type="number"] {
+  box-sizing: border-box;
+  width: 7em;
+}
+
+#otherProperties {
+  /* display at verbose mode */
+  display: none;
+}
+
+.replayUrlPane {
+  width: 60%;
+}
+
+@media (max-width: 1000px) {
+  .replayUrlPane {
+    width: 80%;
+  }
+}
+
+.replayUrlHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  width: 100%;
+}
+
+.replayUrlHeader > * {
+  margin: 0.5em;
+}
+
+#copyReplayURL {
+  font-size: small;
+}
+
+#replayURL {
+  width: 100%;
+  height: 5em;
+}
+
+.copiedBalloon {
+  padding: 0 0.5em 0 0.5em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: small;
+  color: #FFFFFF;
+  background-color: #888888;
+  visibility: hidden;
+  transition: opacity 0.5s;
+  transition-delay: 1s;
+  opacity: 1;
+  /* for callout */
+  position: relative;
+}
+
+.copiedBalloon-fadeout {
+  opacity: 0;
+  visibility: visible;
+}
+
+/* callout */
+.copiedBalloon::before {
+  content: "";
+  position: absolute;
+  top: 0.5em;
+  left: -0.4em;
+  padding: 0.35em;
+  background: inherit;
+  border-top: 0;
+  border-right: 0;
+  transform: rotate(45deg);
+}
+
+/*
+ * footer area
+ */
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#share {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: space-around;
+}
+
+#share > * {
+  margin: 4px;
+  max-width: 100%;
+}
+
+.fb-share-button > span {
+  vertical-align: top;
+}
+
+#copyright {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#copyright, #license {
+  text-align: center;
+}
+
+/*
+ * busy (loading) notificate animation
+ */
+
+.cssload-wrapper {
+  display: block;
+  transition: opacity 1s;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 500;
+}
+
+.cssload-wrapper-on {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cssload-loader {
+	width: 49px;
+	height: 49px;
+	border-radius: 50%;
+  display: inline-block;
+	position: relative;
+	vertical-align: middle;
+}
+
+.cssload-loader {
+	width: 49px;
+	height: 49px;
+	border-radius: 50%;
+  display: inline-block;
+	position: relative;
+	vertical-align: middle;
+	background-color: rgb(0,0,0);
+}
+.cssload-loader,
+.cssload-loader:before,
+.cssload-loader:after {
+	animation: 1.15s infinite ease-in-out;
+}
+.cssload-loader:before,
+.cssload-loader:after {
+	width: 100%; 
+	height: 100%;
+	border-radius: 50%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.cssload-loader:before,
+.cssload-loader:after {
+		content: "";
+}
+
+.cssload-loader:before {
+	content: '';
+	border: 10px solid white;
+	top: -10px;
+	left: -10px;
+	animation-name: cssload-animation;
+}
+
+@keyframes cssload-animation {
+	0% { transform: scale(0); }
+	100% { transform: scale(1); }
+}

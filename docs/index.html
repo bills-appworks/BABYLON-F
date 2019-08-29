@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>バビロン &ldquo;F&rdquo; ジェネレータ / BABYLON &ldquo;F&rdquo; generator</title>
+    <!--
+      Copyright (c) 2019 bills-appworks
+      This software is released under the MIT License.
+      http://opensource.org/licenses/mit-license.php
+    -->
+    <link rel="stylesheet" href="./index.css" />
+    <!-- color picker alternative for IE -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bgrins/spectrum@1.8.0/spectrum.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Promise polyfill for html2canvas on IE -->
+    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.3/dist/html2canvas.min.js"></script>
+    <!-- color picker alternative for IE -->
+    <script src="https://cdn.jsdelivr.net/npm/spectrum-colorpicker@1.8.0/spectrum.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif+JP:400,900|Prata|Libre+Caslon+Text|Special+Elite&display=swap" rel="stylesheet">
+    <script src="./index.js" defer></script>
+    <meta name="msapplication-wide310x150logo" content="./site-tile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="./site-tile-310x310.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="./favicon.ico">
+    <link rel="icon" type="image/vnd.microsoft.icon" href="./favicon.ico">
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="./icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="./android-chrome-512x512.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./icon-32x32.png">
+    <meta name="description" content="「バビロン」作中のアイテムのひとつを生成します / Generate one of item in BABYLON">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="BABYLON F generator">
+    <meta property="og:url" content="https://bills-appworks.github.io/BABYLON-F/">
+    <meta property="og:description" content="「バビロン」作中のアイテムのひとつを生成します / Generate one of item in BABYLON">
+    <meta property="og:image" content="https://bills-appworks.github.io/BABYLON-F/icon-512x512.png">
+    <meta property="og:site_name" content="BABYLON F generator">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@billstw">
+    <meta name="twitter:creator:id" content="@billstw">
+    <meta name="twitter:description" content="「バビロン」作中のアイテムのひとつを生成します / Generate one of item in BABYLON">
+    <meta name="twitter:title" content="BABYLON F generator">
+    <meta name="twitter:image" content="https://bills-appworks.github.io/BABYLON-F/icon-512x512.png">
+    <meta name="twitter:image:alt" content="BABYLON F generator">
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-101978511-4', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <!-- Facebook -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.9";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    <header>
+      <div class="header-left"></div>
+      <div class="header-center">
+        <div lang="ja" class="title-whole">
+          <div class="title">
+            <div><div>バ</div>ビロ<div>ン</div></div>
+            <div>BABYLON</div>
+          </div>
+          <div class="title-description">&ldquo;F&rdquo; ジェネレータ</div>
+        </div>
+        <div lang="en" class="title-whole hideByLanguage">
+            <div class="title">
+              <div><div>バ</div>ビロ<div>ン</div></div>
+              <div>BABYLON</div>
+            </div>
+            <div class="title-description">&ldquo;F&rdquo; generator</div>
+          </div>
+        </div>
+      <div class="header-right">
+        <select size="1" id="language">
+          <option value="en">English - 英語</option>
+          <option value="ja">Japanese - 日本語</option>
+        </select>
+      </div>
+    </header>
+    <hr class="dashedSeparator" />
+    <main>
+      <div class="paneLayout">
+        <div class="pane paperPane">
+          <div id="paper">
+            <span id="measure"></span>
+            <div class="cssload-wrapper">
+              <div class="cssload-loader"></div>
+            </div>
+          </div>
+          <button id="toImage">
+            <span lang="ja">ダウンロード</span>
+            <span lang="en" class="hideByLanguage">Download</span>
+          </button>
+        </div>
+        <div class="pane controlPane">
+          <div class="properties">
+            <div class="category">
+              <span lang="ja">文字</span>
+              <span lang="en" class="hideByLanguage">Letter</span>
+            </div>
+            <div class="propertyItem">
+              <div for="propCharNotation" class="description propertyLabel">
+                <span lang="ja">表記</span>
+                <span lang="en" class="hideByLanguage">Notation</span>
+              </div>
+              <input type="text" size="3" maxlength="10" id="propCharNotation" />
+            </div>
+            <div class="propertyItem">
+              <div for="propCharFont" class="description propertyLabel">
+                <span lang="ja">フォント</span>
+                <span lang="en" class="hideByLanguage">Font</span>
+              </div>
+              <select size="1" id="propCharFont"></select>
+            </div>
+            <div class="propertyItem">
+              <div for="propCharCount" class="description propertyLabel">
+                <span lang="ja">数</span>
+                <span lang="en" class="hideByLanguage">Count</span>
+              </div>
+              <input type="range" min="0" max="50000" id="propCharCountRange" class="propCharCount" />
+              <input type="number" min="0" max="50000" id="propCharCountNumber" class="propCharCount" />
+            </div>
+            <div class="propertyItem">
+              <label for="propCharSize" class="description propertyLabel">
+                <span lang="ja">大きさ</span>
+                <span lang="en" class="hideByLanguage">Size</span>
+              </label>
+              <input type="range" min="1" max="100" id="propCharSizeRange" class="propCharSize" />
+              <input type="number" min="1" max="100" id="propCharSizeNumber" class="propCharSize" />
+            </div>
+            <div class="propertyItem">
+              <label for="propCharColor" class="description propertyLabel">
+                <span lang="ja">色</span>
+                <span lang="en" class="hideByLanguage">Color</span>
+              </label>
+              <input type="color" id="propCharColor" />
+            </div>
+          </div>
+          <div class="properties">
+            <div class="category">
+              <span lang="ja">しみ</span>
+              <span lang="en" class="hideByLanguage">Stain</span>
+            </div>
+            <div class="propertyItem">
+              <label for="propStainCount" class="description propertyLabel">
+                <span lang="ja">数</span>
+                <span lang="en" class="hideByLanguage">Count</span>
+              </label>
+              <input type="range" min="0" max="50000" id="propStainCountRange" class="propStainCount" />
+              <input type="number" min="0" max="50000" id="propStainCountNumber" class="propStainCount" />
+            </div>
+            <div class="propertyItem">
+              <label for="propStainSize" class="description propertyLabel">
+                <span lang="ja">大きさ</span>
+                <span lang="en" class="hideByLanguage">Size</span>
+              </label>
+              <input type="range" min="1" max="100" id="propStainSizeRange" class="propStainSize" />
+              <input type="number" min="1" max="100" id="propStainSizeNumber" class="propStainSize" />
+            </div>
+            <div class="propertyItem">
+              <label for="propStainColor" class="description propertyLabel">
+                <span lang="ja">色</span>
+                <span lang="en" class="hideByLanguage">Color</span>
+              </label>
+              <input type="color" id="propStainColor" />
+            </div>
+            <div class="propertyItem">
+              <label for="propStainAlpha" class="description propertyLabel">
+                <span lang="ja">透明度</span>
+                <span lang="en" class="hideByLanguage">Clarity</span>
+              </label>
+              <input type="range" min="0" max="100" id="propStainAlphaRange" class="propStainAlpha" />
+              <input type="number" min="0" max="100" id="propStainAlphaNumber" class="propStainAlpha" />
+            </div>
+            <div class="propertyItem">
+              <label for="propStainBleeding" class="description propertyLabel">
+                <span lang="ja">にじみ</span>
+                <span lang="en" class="hideByLanguage">Bleeding</span>
+              </label>
+              <input type="range" min="0" max="10" id="propStainBleedingRange" class="propStainBleeding" />
+              <input type="number" min="0" max="10" id="propStainBleedingNumber" class="propStainBleeding" />
+            </div>
+          </div>
+          <div class="properties">
+            <div class="category">
+              <span lang="ja">紙</span>
+              <span lang="en" class="hideByLanguage">Paper</span>
+            </div>
+            <div class="propertyItem">
+              <label for="propPaperHeight" class="description propertyLabel">
+                <span lang="ja">縦</span>
+                <span lang="en" class="hideByLanguage">Height</span>
+              </label>
+              <input type="range" min="100" max="10000" id="propPaperHeightRange" class="propPaperHeight" />
+              <input type="number" min="100" max="10000" id="propPaperHeightNumber" class="propPaperHeight" />
+            </div>
+            <div class="propertyItem">
+              <label for="propPaperWidth" class="description propertyLabel">
+                <span lang="ja">横</span>
+                <span lang="en" class="hideByLanguage">Width</span>
+              </label>
+              <input type="range" min="100" max="10000" id="propPaperWidthRange" class="propPaperWidth" />
+              <input type="number" min="100" max="10000" id="propPaperWidthNumber" class="propPaperWidth" />
+            </div>
+            <div class="propertyItem">
+              <label for="propPaperColor" class="description propertyLabel">
+                <span lang="ja">色</span>
+                <span lang="en" class="hideByLanguage">Color</span>
+              </label>
+              <input type="color" id="propPaperColor" />
+            </div>
+          </div>
+          <div class="properties" id="otherProperties">
+            <div class="category">
+              <span lang="ja">その他</span>
+              <span lang="en" class="hideByLanguage">Others</span>
+            </div>
+            <div class="propertyItem">
+              <label for="propOtherRandomSeed" class="description propertyLabel">
+                <span lang="ja">乱数源</span>
+                <span lang="en" class="hideByLanguage">Random</span>
+              </label>
+              <input type="range" min="1" max="2147483647" id="propOtherRandomSeedRange" class="propOtherRandomSeed" />
+              <input type="number" min="1" max="2147483647" id="propOtherRandomSeedNumber" class="propOtherRandomSeed" />
+            </div>
+            <div class="propertyItem">
+              <label for="propOtherRenderVersion" class="description propertyLabel">
+                <span lang="ja">Version</span>
+                <span lang="en" class="hideByLanguage">Version</span>
+              </label>
+              <input type="text" size="8" id="propOtherRenderVersion" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="paneLayout">
+        <div class="pane replayUrlPane">
+          <div class="replayUrlHeader">
+            <div class="description">
+              <sapn lang="ja">再現URL</sapn>
+              <sapn lang="en" class="hideByLanguage">Replay URL</sapn>
+            </div>
+            <button id="copyReplayURL">
+              <span lang="ja">コピー</span>
+              <span lang="en" class="hideByLanguage">Copy</span>
+            </button>
+            <div id="copiedBalloon" class="copiedBalloon">
+              <span lang="ja">コピーしました</span>
+              <span lang="en" class="hideByLanguage">Copied</span>
+            </div>
+          </div>
+          <textarea id="replayURL" readonly></textarea>
+        </div>
+      </div>
+    </main>
+    <hr class="solidSeparator" />
+    <footer>
+      <div id="share">
+        <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        <div class="fb-share-button" data-layout="button" data-size="small" data-mobile-iframe="false"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u&amp;src=sdkpreparse">シェア</a></div>
+        <a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+        <div class="line-it-button shareln" style="display: none;" data-lang="ja" data-type="share-a"></div><script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
+      </div>
+      <small id="author">
+        <span>
+          <span lang="ja">アプリ作成者：びるず</span>
+          <span lang="en" class="hideByLanguage">App author: bills</span>
+          <span>(<a href="https://twitter.com/billstw" target="_blank">twitter:@billstw</a>)</span>
+        </span>
+      </small>
+      <small id="copyright">
+        <div>Application's copyright &copy; 2019 bills-appworks</div>
+        <div>(Except &ldquo;バビロン&rdquo; &ldquo;BABYLON&rdquo; and those product expression)</div>
+      </small>
+      <small id="license">
+        <div>This software is released under the <a href="http://opensource.org/licenses/mit-license.php" target="_blank">MIT License </a>.</div>
+      </small>
+      <small id="privacy_policy">
+        <div>
+          <span lang="ja"><a href="./privacy_policy.html">プライバシーポリシー</a></span>
+          <span lang="en" class="hideByLanguage"><a href="./privacy_policy.html">Privacy policy</a></span>
+        </div>
+      </small>
+    </footer>
+  </body>
+</html>
