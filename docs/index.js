@@ -946,8 +946,10 @@ function loading(isShow, suffix) {
     suffix = '';
   }
   if (isShow) {
+    document.body.style.cursor = 'wait';
     $('.cssload-wrapper' + suffix).addClass('cssload-wrapper-on');
   } else {
+    document.body.style.cursor = '';
     $('.cssload-wrapper' + suffix).removeClass('cssload-wrapper-on');
   }
 }
@@ -1040,6 +1042,7 @@ $('#toImage').on('click', function() {
   // clear box-shadow temporary
   $('.renderStain').css('box-shadow', 'none');
   */
+  $('#toImage').prop('disabled', true);
   loading(true, '2');
   html2canvas(document.querySelector('#paper')).then(function(canvas) {
     // restore box-shadow value
@@ -1072,6 +1075,7 @@ $('#toImage').on('click', function() {
       window.open(base64data, '_blank');
     }
     loading(false, '2');
+    $('#toImage').prop('disabled', false);
   });
 });
 
