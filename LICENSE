@@ -19,3 +19,39 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+--------------------------------------------------------------------------------
+
+This software uses following software(s):
+
+jQuery
+https://jquery.com/
+License: MIT
+
+Google Fonts: Noto Serif JP
+https://fonts.google.com/specimen/Noto+Serif+JP
+License: Open Font License
+
+Google Fonts: Prata
+https://fonts.google.com/specimen/Prata
+License: Open Font License
+
+Google Fonts: Libre Caslon Text
+https://fonts.google.com/specimen/Libre+Caslon+Text
+License: Open Font License
+
+Google Fonts: Special Elite
+https://fonts.google.com/specimen/Special+Elite
+License: Apache License, Version 2.0
+
+html2canvas
+https://html2canvas.hertzen.com/
+License: MIT
+
+ES6-Promise
+https://github.com/stefanpenner/es6-promise
+License: MIT
+
+Spectrum
+https://bgrins.github.io/spectrum/
+License: MIT
