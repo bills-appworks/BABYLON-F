@@ -685,6 +685,7 @@ function renderRawCharV1_0_0(start, end, random) {
   var charProp = effectiveProperty.char;
   var paperProp = effectiveProperty.paper;
   $('#measure').css({
+    fontFamily: getSelectFont()[charProp.font].style,
     fontSize: effectiveProperty.char.size + 'pt',
   });
   var charHeight = $('#measure').text(charProp.notation).get(0).offsetHeight;
