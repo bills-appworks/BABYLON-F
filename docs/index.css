@@ -52,6 +52,10 @@ button {
   vertical-align: middle;
 }
 
+button:hover, select:hover, input[type="range"], input[type="color"] {
+  cursor: pointer;
+}
+
 a {
   color: rgba(255, 255, 255, 0.7);
 }
