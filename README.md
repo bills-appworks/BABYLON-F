@@ -44,9 +44,6 @@ https://bills-appworks.github.io/BABYLON-F/
   * 透明度
     * 「しみ」の透過度合いを指定します。
     * URLパラメタ: scl=\<R>,\<G>,\<B>,\<透過率> (0～100) ※色パラメタと共用
-  * にじみ
-    * 「しみ」のぼかし度合いを指定します。
-    * URLパラメタ: sb=\<アプリ内定義ぼかし量> (0～10)
 * 紙
   * 縦
     * 文字や「しみ」の出力先領域の**垂直**方向の大きさを指定します。
@@ -124,9 +121,6 @@ This URL can replay to output result anytime.
   * Clarity
     * Input transparency of output stain.
     * URL parameter: scl=\<R>,\<G>,\<B>,\<transparency numeric> (0-100) *Shared with color parameter
-  * Bleeding
-    * Input bleeding of output stain.
-    * URL parameter: sb=\<bleeding numeric of app internal definition> (0-10)
 * Paper
   * Hight
     * **Vertical** direction size of output area for charactor and stain.

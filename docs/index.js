@@ -524,7 +524,10 @@ function displayReplayUrlV1_0_0() {
   params.push(['sc', prop.stain.count]);
   params.push(['ss', prop.stain.size]);
   params.push(['scl', colorToString(prop.stain.color)]);
+  // html2canvas is mismatch to bleeding effect
+  /*
   params.push(['sb', prop.stain.bleeding]);
+  */
   switch (prop.other.verbose) {
     case 1:
       // [[A,B],[C,D]] -> A,B,C,D
@@ -830,6 +833,8 @@ function renderStainStyleV1_0_0() {
   var a = effectiveProperty.stain.color.a;
   for (var i = 0; i < stainProp.shape.length; i++) {
     $('.stainShape' + i).css({
+      // html2canvas is mismatch to boxShadow and inset 
+      /*
       borderRadius: getStyleLiteralFromShape(stainProp.shape[i]),
       boxShadow: '0 0 '
         + bleeding + 'px '
@@ -839,6 +844,8 @@ function renderStainStyleV1_0_0() {
         + g + ', '
         + b + ', '
         + a + ') inset'
+      */
+      borderRadius: getStyleLiteralFromShape(stainProp.shape[i])
     });
   }
 }
@@ -934,11 +941,14 @@ function getStyleLiteralFromShape(shapeArray) {
  * Show/Hide loading animation for long time procedure (massive rendering)
  * @param {boolean} isShow true:show animation, false:hide animation
  */
-function loading(isShow) {
+function loading(isShow, suffix) {
+  if (!suffix) {
+    suffix = '';
+  }
   if (isShow) {
-    $('.cssload-wrapper').addClass('cssload-wrapper-on');
+    $('.cssload-wrapper' + suffix).addClass('cssload-wrapper-on');
   } else {
-    $('.cssload-wrapper').removeClass('cssload-wrapper-on');
+    $('.cssload-wrapper' + suffix).removeClass('cssload-wrapper-on');
   }
 }
 
@@ -1023,15 +1033,21 @@ $('#toImage').on('click', function() {
   var paperBoxShadow = $('#paper').css('box-shadow');
   // clear box-shadow temporary
   $('#paper').css('box-shadow', 'none');
+  // html2canvas is mismatch to box-shadow and inset
+  /*
   // workaround: html2canvas generate invret inset overlay color affected by box-shadow and inset
   var stainBoxShadow = $('.renderStain').css('box-shadow');
   // clear box-shadow temporary
   $('.renderStain').css('box-shadow', 'none');
+  */
+  loading(true, '2');
   html2canvas(document.querySelector('#paper')).then(function(canvas) {
     // restore box-shadow value
     $('#paper').css('box-shadow', paperBoxShadow);
+    /*
     // restore box-shadow value
     $('.renderStain').css('box-shadow', stainBoxShadow);
+    */
     var mimeType = 'image/png';
     var filename = 'F.png';
     var base64data = canvas.toDataURL(mimeType);
@@ -1055,6 +1071,7 @@ $('#toImage').on('click', function() {
     } else {
       window.open(base64data, '_blank');
     }
+    loading(false, '2');
   });
 });
 

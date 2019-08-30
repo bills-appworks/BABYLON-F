@@ -429,7 +429,8 @@ footer {
  * busy (loading) notificate animation
  */
 
-.cssload-wrapper {
+.cssload-wrapper,
+.cssload-wrapper2 {
   display: block;
   transition: opacity 1s;
   opacity: 0;
@@ -437,18 +438,13 @@ footer {
   z-index: 500;
 }
 
+.cssload-wrapper2 {
+  margin-top: calc(-2.2em + 10px);
+}
+
 .cssload-wrapper-on {
   opacity: 1;
   visibility: visible;
-}
-
-.cssload-loader {
-	width: 49px;
-	height: 49px;
-	border-radius: 50%;
-  display: inline-block;
-	position: relative;
-	vertical-align: middle;
 }
 
 .cssload-loader {
