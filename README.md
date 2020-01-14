@@ -70,7 +70,7 @@ https://bills-appworks.github.io/BABYLON-F/
     * border-radius仕様: https://developer.mozilla.org/ja/docs/Web/CSS/border-radius
     * Border-radius generator: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Background_and_Borders/Border-radius_generator
 * 冗長モード
-  * 指定すると「乱数減」「バージョン」設定項目が画面に表示されます。また「再現URL」に「しみ」形状パラメタも出力されます。
+  * 指定すると「乱数源」「バージョン」設定項目が画面に表示されます。また「再現URL」に「しみ」形状パラメタも出力されます。
   * URLパラメタ: verbose=\<モード> (0:通常モード / 1:冗長モード)
 * 言語
   * 画面に表示される説明文等の言語を指定します。指定しない場合はWebブラウザの言語設定に従います。
