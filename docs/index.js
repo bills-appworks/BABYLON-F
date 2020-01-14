@@ -290,7 +290,7 @@ function applyUrlParameterV1_0_0(paramObj) {
   for (var param in paramObj) {
     switch (param) {
       case 'cn':
-        charProp.notation = paramObj[param].substring(0, getLimit().char.notation.max);
+        charProp.notation = decodeURIComponent(paramObj[param].substring(0, getLimit().char.notation.max));
         break;
       case 'cf':
         charProp.font = validateInputNumber(paramObj[param], {min: 0, max: getSelectFont().length - 1});
