@@ -530,6 +530,7 @@ function displayReplayUrlV1_0_0() {
   */
   switch (prop.other.verbose) {
     case 1:
+      // Stain shape
       // [[A,B],[C,D]] -> A,B,C,D
       params.push(['ssh', prop.stain.shape.map(function(element) {
         return element.reduce(function(prev, current) {
@@ -538,6 +539,8 @@ function displayReplayUrlV1_0_0() {
       }).reduce(function(prev, current) {
         return prev + ',' + current;
       })]);
+      // verbose mode
+      params.push(['verbose', prop.other.verbose]);
       break;
 
     case 0:
