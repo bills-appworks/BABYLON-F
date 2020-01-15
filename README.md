@@ -64,13 +64,13 @@ https://bills-appworks.github.io/BABYLON-F/
   * URLパラメタ: v=\<バージョン指定文字列> (現バージョンは「1.0.0」)
 * 「しみ」形状
   * アプリケーション内で初期値が定義されている「しみ」の形状を指定します。出力においては3パターンの形状を繰り返しています。
-  * URLパラメタ: \<形状パラメタ1>,\<形状パラメタ２>,\<形状パラメタ3>
+  * URLパラメタ: ssh=\<形状パラメタ1>,\<形状パラメタ２>,\<形状パラメタ3>
     * 形状パラメタ: \<1>,\<2>,\<3>,\<4>,\<5>,\<6>,\<7>,\<8>
     * CSS border-radiusプロパティの値（border-radius: \<1>% \<2>% \<3>% \<4>% / \<5>% \<6>% \<7>% \<8>%）に展開されます。
     * border-radius仕様: https://developer.mozilla.org/ja/docs/Web/CSS/border-radius
     * Border-radius generator: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Background_and_Borders/Border-radius_generator
 * 冗長モード
-  * 指定すると「乱数源」「バージョン」設定項目が画面に表示されます。また「再現URL」に「しみ」形状パラメタも出力されます。
+  * 指定すると「乱数源」「バージョン」設定項目が画面に表示されます。また「再現URL」に「しみ」形状パラメタおよび「冗長モード」パラメタ自身も出力されます。
   * URLパラメタ: verbose=\<モード> (0:通常モード / 1:冗長モード)
 * 言語
   * 画面に表示される説明文等の言語を指定します。指定しない場合はWebブラウザの言語設定に従います。
@@ -141,13 +141,13 @@ Following are supplemental function. "Random" and "Version" are input interface 
   * URL parameter: v=\<version string> (current version is "1.0.0")
 * Stain shape
   * Specify stain shape change for application internal definition initial value. In output procedure, repeat 3 pattern shapes.
-  * URL parameter: \<shape parameter 1>,\<shape parameter 2>,\<shape parameter 3>
+  * URL parameter: ssh=\<shape parameter 1>,\<shape parameter 2>,\<shape parameter 3>
     * shape parameter: <1>,<2>,<3>,<4>,<5>,<6>,<7>,<8>
     * Expand to CSS border-radius property value (border-radius: <1>% <2>% <3>% <4>% / <5>% <6>% <7>% <8>%).
     * border-radius specification: https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius
     * Border-radius generator: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Background_and_Borders/Border-radius_generator
 * Verbose mode
-  * In specify, display "Random" "Version" input item to screen, and output stain shape parameter to "Replay URL".
+  * In specify, display "Random" "Version" input item to screen, and output stain shape parameter to "Replay URL". Also output verbose mode parameter itself. 
   * URL parameter: verbose=\<mode> (0:normal mode / 1:verbose mode)
 * Language
   * Specify language for desciption in screen display, etc. In not specified, due to web browser language setting.
